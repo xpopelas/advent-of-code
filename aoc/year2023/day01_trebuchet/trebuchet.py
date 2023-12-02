@@ -1,6 +1,6 @@
 from typing import Final
 
-from aoc.utils import AdventOfCodeSolution
+from aoc.utilities.solution import AdventOfCodeSolution
 
 
 class Trebuchet(AdventOfCodeSolution):
