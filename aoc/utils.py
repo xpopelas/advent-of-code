@@ -5,7 +5,8 @@ class AdventOfCodeSolution:
     """Base class for the Advent of Code solutions.
 
     Attributes:
-        name (str | None): The name of the solution - used for logging as a prefix, if None, no prefix is used.
+        name (str | None): The name of the solution
+            used for logging as a prefix, if None, no prefix is used.
         input_file (str): The input file to read from - your puzzle input.
         lines (list[str]): The lines of the input file - each line is stripped of whitespace.
     """
@@ -16,7 +17,7 @@ class AdventOfCodeSolution:
         self.lines: list[str] = self.__load_lines()
 
     def __load_lines(self) -> list[str]:
-        with open(self.input_file, "r") as file:
+        with open(self.input_file, "r", encoding="UTF-8") as file:
             return [line.strip() for line in file.readlines()]
 
     def part_one(self) -> str:

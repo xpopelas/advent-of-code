@@ -1,6 +1,6 @@
 import dataclasses
 
-from sol.utils import AdventOfCodeSolution
+from aoc.utils import AdventOfCodeSolution
 
 
 @dataclasses.dataclass
