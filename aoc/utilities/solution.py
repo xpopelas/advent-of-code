@@ -1,4 +1,5 @@
 import time
+from typing import Callable, Any
 
 
 class AdventOfCodeSolution:
@@ -20,6 +21,13 @@ class AdventOfCodeSolution:
         with open(self.input_file, "r", encoding="UTF-8") as file:
             return [line.strip() for line in file.readlines()]
 
+    def parse(self) -> None:
+        """Method used for parsing the lines into a more usable format.
+
+        :return: Nothing
+        """
+        raise NotImplementedError
+
     def part_one(self) -> str:
         """Method used for overriding the first part of the solution.
 
@@ -34,17 +42,35 @@ class AdventOfCodeSolution:
         """
         raise NotImplementedError
 
-    def _log_run(self, part: int, perf_time: float, solution_result: str):
+    def _log_run(
+        self, prefix: str, perf_time: float, solution_result: str | None = None
+    ):
         """Logs the run of the solution.
 
-        :param part: Which part of the solution is being logged
+        :param prefix: Prefix of the part being logged
         :param perf_time: The performance time of the solution
         :param solution_result: The solution of the solution
         :return:
         """
         if self.name:
             print(f"{self.name} - ", end="")
-        print(f"Part {part}: {perf_time:.6f} seconds - Solution: {solution_result}")
+        print(f"{prefix}: {perf_time:.6f} seconds", end="")
+        if solution_result is not None:
+            print(f" - Solution: {solution_result}", end="")
+        print()
+
+    @staticmethod
+    def _timed_run(function: Callable[[], Any]) -> tuple[float, Any]:
+        """Runs the given function and logs the time taken.
+
+        :param function: The function to run
+        :return: The time of the run and the result of the function
+        """
+        start_time = time.perf_counter()
+        solution_result = function()
+        end_time = time.perf_counter()
+        perf_time = end_time - start_time
+        return perf_time, solution_result
 
     def run(self) -> None:
         """
@@ -52,20 +78,21 @@ class AdventOfCodeSolution:
 
         :return: Nothing
         """
-        try:
-            start_time = time.perf_counter()
-            solution_result = self.part_one()
-            end_time = time.perf_counter()
-            perf_time = end_time - start_time
-            self._log_run(1, perf_time, solution_result)
-        except NotImplementedError:
-            print("Part one not implemented")
 
         try:
-            start_time = time.perf_counter()
-            solution_result = self.part_two()
-            end_time = time.perf_counter()
-            perf_time = end_time - start_time
-            self._log_run(2, perf_time, solution_result)
+            perf_time, _ = self._timed_run(self.parse)
+            self._log_run("Parser", perf_time)
         except NotImplementedError:
-            print("Part two not implemented")
+            print("Parser not used")
+
+        try:
+            perf_time, solution_result = self._timed_run(self.part_one)
+            self._log_run("Part 1", perf_time, solution_result)
+        except NotImplementedError:
+            print("Part 1 not implemented")
+
+        try:
+            perf_time, solution_result = self._timed_run(self.part_two)
+            self._log_run("Part 2", perf_time, solution_result)
+        except NotImplementedError:
+            print("Part 2 not implemented")
