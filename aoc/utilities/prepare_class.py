@@ -45,7 +45,14 @@ class AdventOfCodeBuilder:
         content += "\n\n"
         content += f"class {self.class_name}(AdventOfCodeSolution):\n"
         content += "    def __init__(self):\n"
+        content += (
+            "        # If you need any additional variables, you can set them here\n"
+        )
         content += f'        super().__init__(name="{self.day_name}")\n'
+        content += "\n"
+        content += "    def parse(self) -> None:\n"
+        content += "        # If you need to parse the input, you can do it here\n"
+        content += "        pass\n"
         content += "\n"
         content += "    def part_one(self) -> str:\n"
         content += "        raise NotImplementedError\n"

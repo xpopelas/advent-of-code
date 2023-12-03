@@ -37,11 +37,10 @@ class GameResult:
 
 class CubeConundrum(AdventOfCodeSolution):
     def __init__(self):
-        super().__init__(name="Day 2: Cube Conundrum")
         self.game_results: dict[int, GameResult] = {}
-        self._load_game_results()
+        super().__init__(name="Day 2: Cube Conundrum")
 
-    def _load_game_results(self) -> None:
+    def parse(self) -> None:
         for line in self.lines:
             game_line, cube_sets_line = line.split(": ")
             game_id = int(game_line[len("Game ") :])
