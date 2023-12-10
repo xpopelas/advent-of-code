@@ -1,5 +1,3 @@
-# pylint: skip-file
-
 import markdownify
 
 
@@ -10,7 +8,7 @@ class AdventOfCodeHtmlToMarkdown:
         self._load_content()
 
     def _load_content(self) -> None:
-        with open(self.file_path, "r") as file:
+        with open(self.file_path, "r", encoding="UTF-8") as file:
             self.content = file.read().strip()
 
     @property
