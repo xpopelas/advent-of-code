@@ -6,5 +6,8 @@ disable=
     R0911, # too-many-return-statements
     R0912, # too-many-branches
 
+ignored-modules=
+    matplotlib.path
+
 [FORMAT]
 max-line-length=120
