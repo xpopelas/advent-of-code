@@ -3,6 +3,17 @@ import os.path
 from pathlib import Path
 
 
+def create_empty_file_if_not_exists(path: str, content: str | None = None) -> bool:
+    if os.path.exists(path):
+        return False
+
+    with open(path, "w", encoding="UTF-8") as file:
+        if content is not None:
+            file.write(content)
+
+    return True
+
+
 @dataclasses.dataclass
 class AdventOfCodeBuilder:
     day_name: str
@@ -40,6 +51,10 @@ class AdventOfCodeBuilder:
         return f"{self.snake_case_task_name}.py"
 
     @property
+    def file_path(self) -> str:
+        return self.folder_path + "/" + self.file_name
+
+    @property
     def class_content(self) -> str:
         content = "from aoc.utilities.solution import AdventOfCodeSolution\n"
         content += "\n\n"
@@ -67,27 +82,37 @@ class AdventOfCodeBuilder:
         content += "    main()\n"
         return content
 
+    def build_directory(self) -> None:
+        path = Path(self.folder_path)
+        current_path = ""
+        for part in path.parts:
+            current_path += part
+            if not os.path.exists(current_path):
+                os.mkdir(current_path)
+                create_empty_file_if_not_exists(current_path + "/__init__.py")
+            current_path += "/"
 
-def write_to_file(builder: AdventOfCodeBuilder) -> None:
-    path = Path(builder.folder_path)
-    current_path = ""
-    for part in path.parts:
-        current_path += part
-        if not os.path.exists(current_path):
-            os.mkdir(current_path)
-            if not os.path.exists(current_path + "/__init__.py"):
-                with open(current_path + "/__init__.py", "w", encoding="UTF-8") as file:
-                    file.write("\n")
-        current_path += "/"
+        create_empty_file_if_not_exists(self.folder_path + "/input.txt")
+        create_empty_file_if_not_exists(self.folder_path + "/README.md")
 
-    if os.path.exists(current_path + builder.file_name):
-        print("File already exists - either erase it, or change the name of the class")
-        return
+    def build_class(self) -> bool:
+        if os.path.exists(self.file_path):
+            return False
 
-    with open(current_path + builder.file_name, "w", encoding="UTF-8") as file:
-        file.write(builder.class_content)
+        with open(self.file_path, "w", encoding="UTF-8") as file:
+            file.write(self.class_content)
 
-    print(f"Created {current_path + builder.file_name}")
+        return True
+
+    def build(self) -> None:
+        self.build_directory()
+
+        if not self.build_class():
+            print(
+                f"File '{self.file_path}' already exists - either erase it, or change the name of the class"
+            )
+        else:
+            print(f"Created '{self.file_path}'")
 
 
 def main():
@@ -106,7 +131,7 @@ def main():
     if input():
         print("Exiting...")
         return
-    write_to_file(builder)
+    builder.build()
     print("Done!")
 
 
