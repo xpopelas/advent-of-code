@@ -1,4 +1,5 @@
 import markdownify
+import pyperclip
 
 
 class AdventOfCodeHtmlToMarkdown:
@@ -17,10 +18,42 @@ class AdventOfCodeHtmlToMarkdown:
             self.content, heading_style="ATX", strip=["script", "style", "link"]
         )
 
+    @property
+    def sanitized_markdown(self) -> str:
+        lines = self.markdown.split("\n")
+        result_lines = []
+        past_title = False
+        puzzle_answers = 0
+
+        for line in lines:
+            if not past_title:
+                if not line.startswith("## ---"):
+                    continue
+                past_title = True
+
+            if line.startswith("Your puzzle answer was"):
+                puzzle_answers += 1
+                if puzzle_answers == 2:
+                    break
+                continue
+
+            if "Both parts of this puzzle are complete" in line:
+                break
+
+            result_lines.append(line)
+
+        result = "\n".join(result_lines)
+        while "\n\n\n" in result:
+            result = result.replace("\n\n\n", "\n\n")
+
+        result.strip()
+        return result
+
 
 def main():
     converter = AdventOfCodeHtmlToMarkdown("day.html")
-    print(converter.markdown)
+    pyperclip.copy(converter.sanitized_markdown)
+    print("Sanitized markdown copied to clipboard")
 
 
 if __name__ == "__main__":

@@ -10,7 +10,8 @@ disable=
 ignored-modules=
     matplotlib.path,
     markdownify,
-    shapely
+    shapely,
+    pyperclip
 
 [FORMAT]
 max-line-length=120
