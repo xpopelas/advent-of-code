@@ -35,11 +35,11 @@ class PositionalNumber:
 
 
 class Day03GearRatios(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.symbols: dict[Position, str] = {}
         self.number_positions: dict[Position, PositionalNumber] = {}
         self.numbers: list[PositionalNumber] = []
-        super().__init__(name="Day 3: Gear Ratios")
+        super().__init__(name="Day 3: Gear Ratios", content=content)
 
     def parse(self) -> None:
         was_on_digit = False

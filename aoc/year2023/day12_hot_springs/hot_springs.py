@@ -72,9 +72,9 @@ class SpringRow:
 
 
 class Day12HotSprings(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.spring_rows: list[SpringRow] = []
-        super().__init__(name="Day 12: Hot Springs")
+        super().__init__(name="Day 12: Hot Springs", content=content)
 
     def parse(self) -> None:
         for line in self.lines:

@@ -16,8 +16,8 @@ class Trebuchet(AdventOfCodeSolution):
         "nine": 9,
     }
 
-    def __init__(self):
-        super().__init__(name="Day 1: Trebuchet?!")
+    def __init__(self, content: str | None = None):
+        super().__init__(name="Day 1: Trebuchet?!", content=content)
 
     def parse(self) -> None:
         raise NotImplementedError

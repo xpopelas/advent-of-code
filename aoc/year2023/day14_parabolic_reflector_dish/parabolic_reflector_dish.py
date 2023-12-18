@@ -96,11 +96,11 @@ class ParabolicReflectorDish:
 
 
 class Day14ParabolicReflectorDish(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.parabolic_reflector_dish: ParabolicReflectorDish = ParabolicReflectorDish(
             set(), set()
         )
-        super().__init__(name="Day 14: Parabolic Reflector Dish")
+        super().__init__(name="Day 14: Parabolic Reflector Dish", content=content)
 
     def parse(self) -> None:
         for y, line in enumerate(self.lines):

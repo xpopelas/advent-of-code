@@ -57,9 +57,9 @@ class QueueElement:
 
 
 class Day17ClumsyCrucible(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.grid: dict[Position, int] = {}
-        super().__init__(name="Day 17: Clumsy Crucible")
+        super().__init__(name="Day 17: Clumsy Crucible", content=content)
 
     def parse(self) -> None:
         for y, line in enumerate(self.lines):

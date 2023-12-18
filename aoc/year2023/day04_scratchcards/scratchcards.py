@@ -46,9 +46,9 @@ class ScratchCard:
 
 
 class Day04Scratchcards(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.cards: dict[int, ScratchCard] = {}
-        super().__init__(name="Day 4: Scratchcards")
+        super().__init__(name="Day 4: Scratchcards", content=content)
 
     def parse(self) -> None:
         for line in self.lines:

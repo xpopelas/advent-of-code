@@ -54,9 +54,9 @@ class Board:
 
 
 class Day13PointOfIncidence(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.board: list[Board] = []
-        super().__init__(name="Day 13: Point of Incidence")
+        super().__init__(name="Day 13: Point of Incidence", content=content)
 
     def parse(self) -> None:
         current_rows = []

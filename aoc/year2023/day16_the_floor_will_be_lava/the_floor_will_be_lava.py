@@ -155,9 +155,9 @@ class Contraption:
 
 
 class Day16TheFloorWillBeLava(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.contraption: Contraption = Contraption([])
-        super().__init__(name="Day 16: The Floor Will Be Lava")
+        super().__init__(name="Day 16: The Floor Will Be Lava", content=content)
 
     def parse(self) -> None:
         self.contraption = Contraption(self.lines)

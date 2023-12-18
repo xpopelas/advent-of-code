@@ -63,9 +63,9 @@ class BoxSet:
 
 
 class Day15LensLibrary(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.values: list[Box] = []
-        super().__init__(name="Day 15: Lens Library")
+        super().__init__(name="Day 15: Lens Library", content=content)
 
     def parse(self) -> None:
         for box_text in self.lines[0].split(","):

@@ -9,10 +9,10 @@ Coordinate = tuple[int, int]
 
 
 class Day10PipeMaze(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.graph: dict[Coordinate, list[Coordinate]] = defaultdict(list)
         self.start: Coordinate = (0, 0)
-        super().__init__(name="Day 10: Pipe Maze")
+        super().__init__(name="Day 10: Pipe Maze", content=content)
 
     def parse(self) -> None:
         for y, line in enumerate(self.lines):

@@ -5,10 +5,10 @@ from aoc.utilities.solution import AdventOfCodeSolution
 
 
 class Day08HauntedWasteland(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.instructions: str = ""
         self.map: dict[str, tuple[str, str]] = {}
-        super().__init__(name="Day 8: Haunted Wasteland")
+        super().__init__(name="Day 8: Haunted Wasteland", content=content)
 
     def parse(self) -> None:
         self.instructions = self.lines[0]

@@ -77,9 +77,9 @@ class Instruction:
 
 
 class Day18LavaductLagoon(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.instructions: list[Instruction] = []
-        super().__init__(name="Day 18: Lavaduct Lagoon")
+        super().__init__(name="Day 18: Lavaduct Lagoon", content=content)
 
     def parse(self) -> None:
         for line in self.lines:
