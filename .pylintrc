@@ -9,7 +9,8 @@ disable=
 
 ignored-modules=
     matplotlib.path,
-    markdownify
+    markdownify,
+    shapely
 
 [FORMAT]
 max-line-length=120
