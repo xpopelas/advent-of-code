@@ -9,17 +9,28 @@ class AdventOfCodeSolution:
         name (str | None): The name of the solution
             used for logging as a prefix, if None, no prefix is used.
         input_file (str): The input file to read from - your puzzle input.
+        content (str): The content of the input file - if None, the file is read.
         lines (list[str]): The lines of the input file - each line is stripped of whitespace.
     """
 
-    def __init__(self, name: str | None = None, input_file: str = "input.txt"):
+    def __init__(
+        self,
+        name: str | None = None,
+        content: str | None = None,
+        input_file: str = "input.txt",
+    ):
         self.name: str | None = name
         self.input_file: str = input_file
-        self.lines: list[str] = self.__load_lines()
+        self.content: str = "" if content is None else content
+        self.lines: list[str] = []
+        self.__load_content()
 
-    def __load_lines(self) -> list[str]:
-        with open(self.input_file, "r", encoding="UTF-8") as file:
-            return [line.strip() for line in file.readlines()]
+    def __load_content(self) -> None:
+        if not self.content:
+            with open(self.input_file, "r", encoding="UTF-8") as file:
+                self.content = file.read()
+
+        self.lines = self.content.splitlines()
 
     def parse(self) -> None:
         """Method used for parsing the lines into a more usable format.

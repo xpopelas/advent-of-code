@@ -7,9 +7,9 @@ Position = tuple[int, int]
 
 
 class Day11CosmicExpansion(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.galaxies: set[Position] = set()
-        super().__init__(name="Day 11: Cosmic Expansion")
+        super().__init__(name="Day 11: Cosmic Expansion", content=content)
 
     def parse(self) -> None:
         for y, line in enumerate(self.lines, start=1):

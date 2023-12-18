@@ -59,11 +59,13 @@ class AdventOfCodeBuilder:
         content = "from aoc.utilities.solution import AdventOfCodeSolution\n"
         content += "\n\n"
         content += f"class {self.class_name}(AdventOfCodeSolution):\n"
-        content += "    def __init__(self):\n"
+        content += "    def __init__(self, content: str | None = None):\n"
         content += (
             "        # If you need any additional variables, you can set them here\n"
         )
-        content += f'        super().__init__(name="{self.day_name}")\n'
+        content += (
+            f'        super().__init__(name="{self.day_name}", content=content)\n'
+        )
         content += "\n"
         content += "    def parse(self) -> None:\n"
         content += "        # If you need to parse the input, you can do it here\n"

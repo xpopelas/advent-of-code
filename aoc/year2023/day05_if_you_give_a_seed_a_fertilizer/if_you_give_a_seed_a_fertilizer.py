@@ -67,11 +67,11 @@ class SourceToTargetMap:
 
 
 class Day05IfYouGiveASeedAFertilizer(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.seeds: list[int] = []
         self.seed_ranges: list[tuple[int, int]] = []
         self.maps: list[SourceToTargetMap] = []
-        super().__init__(name="Day 5: If You Give A Seed A Fertilizer")
+        super().__init__(name="Day 5: If You Give A Seed A Fertilizer", content=content)
 
     def _parse_seeds(self, line: str) -> None:
         self.seeds = [int(seed) for seed in line[len("seeds: ") :].split(" ")]

@@ -36,9 +36,9 @@ class GameResult:
 
 
 class CubeConundrum(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.game_results: dict[int, GameResult] = {}
-        super().__init__(name="Day 2: Cube Conundrum")
+        super().__init__(name="Day 2: Cube Conundrum", content=content)
 
     def parse(self) -> None:
         for line in self.lines:

@@ -112,9 +112,9 @@ class CardPlay:
 
 
 class Day07CamelCards(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.card_plays: list[CardPlay] = []
-        super().__init__(name="Day 7: Camel Cards")
+        super().__init__(name="Day 7: Camel Cards", content=content)
 
     def parse(self) -> None:
         for line in self.lines:

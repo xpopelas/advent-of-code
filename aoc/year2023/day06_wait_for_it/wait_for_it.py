@@ -22,10 +22,10 @@ class Race:
 
 
 class Day06WaitForIt(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.races: list[Race] = []
         self.final_race: Race = Race(0, 0)
-        super().__init__(name="Day 6: Wait For It")
+        super().__init__(name="Day 6: Wait For It", content=content)
 
     def parse(self) -> None:
         times = [int(time) for time in self.lines[0].split(" ")[1:] if time]

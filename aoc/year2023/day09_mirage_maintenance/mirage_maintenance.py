@@ -33,9 +33,9 @@ class Sequence:
 
 
 class Day09MirageMaintenance(AdventOfCodeSolution):
-    def __init__(self):
+    def __init__(self, content: str | None = None):
         self.sequences: list[Sequence] = []
-        super().__init__(name="Day 9: Mirage Maintenance")
+        super().__init__(name="Day 9: Mirage Maintenance", content=content)
 
     def parse(self) -> None:
         for line in self.lines:
