@@ -19,6 +19,9 @@ class Trebuchet(AdventOfCodeSolution):
     def __init__(self):
         super().__init__(name="Day 1: Trebuchet?!")
 
+    def parse(self) -> None:
+        raise NotImplementedError
+
     @classmethod
     def get_first_digit(
         cls,
